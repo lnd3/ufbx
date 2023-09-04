@@ -4774,8 +4774,6 @@ typedef ufbx_ref<ufbx_geometry_cache> ufbx_geometry_cache_ref;
 	#pragma GCC diagnostic pop
 #endif
 
-#endif
-
 #ifdef UFBX_DEFAULT_DELETER
 #include <memory>
 
@@ -4791,4 +4789,5 @@ template <> struct ::std::default_delete<ufbx_scene>
 		}
 	}
 };
+#endif
 #endif
