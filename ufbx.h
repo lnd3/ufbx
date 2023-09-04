@@ -4776,3 +4776,19 @@ typedef ufbx_ref<ufbx_geometry_cache> ufbx_geometry_cache_ref;
 
 #endif
 
+#ifdef UFBX_DEFAULT_DELETER
+#include <memory>
+
+template <> struct ::std::default_delete<ufbx_scene>
+{
+	default_delete() = default;
+	template <class U> constexpr default_delete(default_delete<U>) noexcept {}
+	void operator()(ufbx_scene* scene) const noexcept
+	{
+		if (scene)
+		{
+			ufbx_free_scene(scene);
+		}
+	}
+};
+#endif
